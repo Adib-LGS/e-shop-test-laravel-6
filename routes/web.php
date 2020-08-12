@@ -11,7 +11,7 @@
 |
 */
 
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +23,6 @@ Route::get('/boutique/{slug}', 'ProductController@show')->name('products.show');
 
 /**Cart Routes (Shopping Cart) */
 Route::post('/panier/ajouter', 'CartController@store')->name('cart.store');
+Route::get('/videpanier', function () {
+    Cart::destroy();
+});

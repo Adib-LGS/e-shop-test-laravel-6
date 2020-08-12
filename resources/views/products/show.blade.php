@@ -11,9 +11,7 @@
           <strong class="mb-auto">{{ $product->getFormatedPrice() }} </strong>
           <form action="{{ route('cart.store') }}" method="post">
             @csrf
-            <input type="hidden" name="id" value="{{ $product->id }}">
-            <input type="hidden" name="title" value="{{ $product->title }}">
-            <input type="hidden" name="price" value="{{ $product->price }}">
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
               <button type="submit" class="btn btn-dark">Add to Wish List</button>
           </form>
         </div>
