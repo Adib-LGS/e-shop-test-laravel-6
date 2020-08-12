@@ -15,7 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return view('cart.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class CartController extends Controller
        if($duplicate->isNotEmpty()){
         return redirect()->route('products.index')->with('success', 'product has already been added in your shopping cart');
        }
-       
+
        $product = Product::find($request->product_id);
        
        Cart::add($product->id, $product->title, 1, $product->price)
@@ -94,8 +94,10 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($rowId)
     {
-        //
+        Cart::remove($rowId);
+
+        return back()->with('success', 'Product has been deleted');
     }
 }
