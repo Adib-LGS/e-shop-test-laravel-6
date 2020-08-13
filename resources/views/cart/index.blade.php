@@ -56,7 +56,7 @@
       </div>
 
       <div class="row py-5 p-4 bg-white rounded shadow-sm">
-        <div class="col-lg-6">
+        <!--<div class="col-lg-6">
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
           <div class="p-4">
             <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
@@ -72,7 +72,7 @@
             <p class="font-italic mb-4">If you have some information for the seller you can leave them in the box below</p>
             <textarea name="" cols="30" rows="2" class="form-control"></textarea>
           </div>
-        </div>
+        </div>-->
         <div class="col-lg-6">
           <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
           <div class="p-4">
@@ -84,7 +84,7 @@
               <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
               <h5 class="font-weight-bold">{{ getPrice(Cart::total()) }}</h5>
               </li>
-            </ul><a href="#" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
+            </ul><a href="{{ route('checkout.index') }}" class="btn btn-dark rounded-pill py-2 btn-block">Procceed to checkout</a>
           </div>
         </div>
       </div>
