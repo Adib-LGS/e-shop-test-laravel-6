@@ -36,7 +36,7 @@
 @endsection
 @section('extra-js')
     <script>
-        var stripe = Stripe("pk_test_51HG4gyKRxgNRtLuT2ow8LoEvXe1XdPAD60qAJTDc3agATRLxLPa5imvS9KI4L2rzr54a3THsZ0tLgPrOHIgMiP5i00iXBvqNQd");
+        var stripe = Stripe("");
         var elements = stripe.elements();
 
         // The items the customer wants to buy

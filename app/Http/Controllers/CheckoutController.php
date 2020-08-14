@@ -18,7 +18,7 @@ class CheckoutController extends Controller
     public function index()
     {
         // This is your real test secret API key.
-        \Stripe\Stripe::setApiKey('sk_test_51HG4gyKRxgNRtLuTdLEiwq0HRRj4BAmiC1PqvdUmoNw9sjabReFZ8GLQWLesfSbbrPvOuIPI7ThjuOQbwFnLuMqy00G7LotYw2');
+        \Stripe\Stripe::setApiKey('');
 
         $intent = PaymentIntent::create([
             'amount' => round(Cart::total()),
