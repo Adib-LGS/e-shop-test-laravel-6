@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "hardevine/shoppingcart": "^2.8",
         "laravel/framework": "^6.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "stripe/stripe-php": "^7.47"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

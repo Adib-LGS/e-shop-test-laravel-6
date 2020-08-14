@@ -7,6 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
     <title>E-shop</title>
+    @yield('extra-script')
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
 
@@ -189,5 +190,6 @@
     <a href="#">Back to top</a>
   </p>
 </footer>
+@yield('extra-js')
 </body>
 </html>

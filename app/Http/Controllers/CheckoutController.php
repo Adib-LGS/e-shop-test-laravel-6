@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Stripe\PaymentIntent;
+use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
@@ -13,7 +17,20 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout.index');
+        // This is your real test secret API key.
+        \Stripe\Stripe::setApiKey('sk_test_51HG4gyKRxgNRtLuTdLEiwq0HRRj4BAmiC1PqvdUmoNw9sjabReFZ8GLQWLesfSbbrPvOuIPI7ThjuOQbwFnLuMqy00G7LotYw2');
+
+        $intent = PaymentIntent::create([
+            'amount' => round(Cart::total()),
+            'currency' => 'eur',
+        ]);
+
+        //dd($intent);
+        $clientSecret = Arr::get($intent,'client_secret');
+
+        return view('checkout.index', [
+            'client_secret' => $clientSecret,
+        ]);
     }
 
     /**
