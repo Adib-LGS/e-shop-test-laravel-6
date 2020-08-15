@@ -17,19 +17,19 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        // This is your real test secret API key.
-        \Stripe\Stripe::setApiKey('');
+        // Set your secret key. Remember to switch to your live secret key in production!
+        \Stripe\Stripe::setApiKey('sk_test_51HG4gyKRxgNRtLuTdLEiwq0HRRj4BAmiC1PqvdUmoNw9sjabReFZ8GLQWLesfSbbrPvOuIPI7ThjuOQbwFnLuMqy00G7LotYw2');
 
         $intent = PaymentIntent::create([
             'amount' => round(Cart::total()),
-            'currency' => 'eur',
+            'currency' => 'usd',
         ]);
 
         //dd($intent);
         $clientSecret = Arr::get($intent,'client_secret');
 
         return view('checkout.index', [
-            'client_secret' => $clientSecret,
+            'clientSecret' => $clientSecret,
         ]);
     }
 
