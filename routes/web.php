@@ -33,6 +33,7 @@ Route::get('/videpanier', function () {
 /**Checkout Routes */
 Route::get('/paiement', 'CheckoutController@index')->name('checkout.index');
 Route::post('/paiement', 'CheckoutController@store')->name('checkout.store');
-Route::get('/thanks', function () {
+Route::get('/thanks', 'CheckoutController@thankYou')->name('checkout.thankYou');
+/*Route::get('/thanks', function () {
     return view('checkout.thx');
-});
+});*/
