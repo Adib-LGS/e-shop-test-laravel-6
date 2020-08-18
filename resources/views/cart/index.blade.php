@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('extra-meta')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
 @if (Cart::count() > 0)
 <div class="px-4 px-lg-0">
@@ -37,8 +42,14 @@
                       </div>
                     </div>
                   </th>
-                    <td class="border-0 align-middle"><strong>{{ $product->model->getFormatedPrice() }}</strong></td>
-                    <td class="border-0 align-middle"><strong>1</strong></td>
+                    <td class="border-0 align-middle"><strong>{{ getPrice($product->subtotal()) }}</strong></td>
+                <td class="border-0 align-middle">
+                <select name="qty" id="qty"  data-id="{{ $product->rowId }}" class="custom-select"> 
+                    @for ($i = 1; $i <= 5; $i++) 
+                <option value="{{ $i }}" {{ $i == $product->qty ? 'selected' : '' }}> {{ $i }} </option> 
+                    @endfor
+                  </select>
+                </td>
                     <td class="border-0 align-middle">
                         <form action="{{ route('cart.destroy', $product->rowId) }}" method="post">
                             @csrf
@@ -97,4 +108,36 @@
         <p class="alert alert-danger">Hey your Shopping Cart is Emmmptyyyyy Like Never</p>
     </div>
 @endif
+@endsection
+
+@section('extra-js')
+    <script>
+      const qty = document.querySelectorAll('#qty');
+      Array.from(qty).forEach((element) => {
+        element.addEventListener('change', function () {
+            const rowId = element.getAttribute('data-id');
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            axios.patch(`/panier/${rowId}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json, text-plain, */*",
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRF-TOKEN": token
+                    },
+                    method: 'patch',
+                    body: JSON.stringify({
+                        qty: this.value
+                    })
+            })
+            .then((data) => {
+                console.log(data);
+                location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        });
+    });
+    </script>
 @endsection
