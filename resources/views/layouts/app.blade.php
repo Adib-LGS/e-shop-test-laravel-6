@@ -1,90 +1,92 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v3.8.6">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Application E-Commerce développée avec le Framework Laravel 6 par Ludovic Guénet">
+    <meta name="author" content="Ludovic Guénet">
     @yield('extra-meta')
-    <title>E-shop</title>
+
+    <title>Laravel 6 E-Commerce</title>
     @yield('extra-script')
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/blog/">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- FontAwesome 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!-- Favicons -->
-        <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-        <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-        <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-        <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
-        <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-        <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico">
-        <meta name="msapplication-config" content="/docs/4.4/assets/img/favicons/browserconfig.xml">
-        <meta name="theme-color" content="#563d7c">
+    <!-- Ecommerce App CSS -->
+    <link rel="stylesheet" href="{{ asset('css/ecommerce.css') }}">
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <!-- Custom styles for this template -->
-   
   </head>
+
   <body>
-    <div class="container">
-  <header class="blog-header py-3">
-    <div class="row flex-nowrap justify-content-between align-items-center">
-      <div class="col-4 pt-1">
-        <a class="text-muted" href="{{ route('cart.index') }}">Shopping Cart <span class="badge badge-pill badge-dark">{{ Cart::count() }}</span></a>
+
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="text-muted" href="{{ route('cart.index') }}">Panier <span class="badge badge-pill badge-info text-white">{{ Cart::count() }}</span></a>
+        </div>
+        <div class="col-4 text-center">
+          <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">🛍️ E-Commerce</a>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <a class="text-muted" href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+          </a>
+          <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+        </div>
       </div>
-      <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">Large</a>
-      </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
-        <a class="text-muted" href="#" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-        </a>
-        <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
-      </div>
-    </div>
-  </header>
+    </header>
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 text-muted" href="#">World</a>
       <a class="p-2 text-muted" href="#">U.S.</a>
       <a class="p-2 text-muted" href="#">Technology</a>
+      <a class="p-2 text-muted" href="#">Design</a>
+      <a class="p-2 text-muted" href="#">Culture</a>
+      <a class="p-2 text-muted" href="#">Business</a>
     </nav>
   </div>
-@if(session('success'))
-  <div class="alert alert-success">
-      {{ session('success') }}
-  </div>
-@endif
-  <!--<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+
+  @if (session('success'))
+      <div class="alert alert-success">
+          {{ session('success') }}
+      </div>
+  @endif
+
+    @if (session('error'))
+      <div class="alert alert-danger">
+          {{ session('error') }}
+      </div>
+    @endif
+
+  {{-- <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
     <div class="col-md-6 px-0">
       <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
       <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
       <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
     </div>
-  </div>-->
+  </div> --}}
 
   <div class="row mb-2">
-@yield('content')
+  @yield('content')
   </div>
+</div>
 
-<!--
-<main role="main" class="container">
+{{-- <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 blog-main">
       <h3 class="pb-4 mb-4 font-italic border-bottom">
         From the Firehose
       </h3>
-
       <div class="blog-post">
         <h2 class="blog-post-title">Sample blog post</h2>
         <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
         <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
         <hr>
         <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
@@ -112,24 +114,20 @@
           <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
         </ol>
         <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-      </div>/.blog-post 
-
+      </div><!-- /.blog-post -->
       <div class="blog-post">
         <h2 class="blog-post-title">Another blog post</h2>
         <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
         <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
         <blockquote>
           <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
         </blockquote>
         <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
         <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      </div>/.blog-post 
-
+      </div><!-- /.blog-post -->
       <div class="blog-post">
         <h2 class="blog-post-title">New feature</h2>
         <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
         <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         <ul>
           <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
@@ -138,21 +136,17 @@
         </ul>
         <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
         <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-      </div> /.blog-post 
-
+      </div><!-- /.blog-post -->
       <nav class="blog-pagination">
         <a class="btn btn-outline-primary" href="#">Older</a>
         <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
       </nav>
-
-    </div></.blog-main --
-
+    </div><!-- /.blog-main -->
     <aside class="col-md-4 blog-sidebar">
       <div class="p-4 mb-3 bg-light rounded">
         <h4 class="font-italic">About</h4>
         <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
       </div>
-
       <div class="p-4">
         <h4 class="font-italic">Archives</h4>
         <ol class="list-unstyled mb-0">
@@ -170,7 +164,6 @@
           <li><a href="#">April 2013</a></li>
         </ol>
       </div>
-
       <div class="p-4">
         <h4 class="font-italic">Elsewhere</h4>
         <ol class="list-unstyled">
@@ -179,18 +172,19 @@
           <li><a href="#">Facebook</a></li>
         </ol>
       </div>
-    </aside><-- /.blog-sidebar --
-
-  </div><-- /.row --
-
-</main><-- /.container -->
+    </aside><!-- /.blog-sidebar -->
+  </div><!-- /.row -->
+</main><!-- /.container --> --}}
 
 <footer class="blog-footer">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
   <p>
-    <a href="#">Back to top</a>
+    <a href="https://getbootstrap.com/">Adib LGS</a> - 🛒 Application E-Commerce avec Laravel 6
+  </p>
+  <p>
+    <a href="#">Revenir en haut</a>
   </p>
 </footer>
+
 @yield('extra-js')
 </body>
 </html>

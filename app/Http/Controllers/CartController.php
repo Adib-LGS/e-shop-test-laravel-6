@@ -94,7 +94,7 @@ class CartController extends Controller
         ]);
 
         if($validate->fails()) {
-            Session::flash('danger', 'Quantity must be between 1 and 5');
+            Session::flash('error', 'Quantity must be between 1 and 5');
 
             return response()->json(['error' => 'Cart Quantity Hasn\'t Been Updated']);
         }
