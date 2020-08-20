@@ -101,7 +101,7 @@ class CartController extends Controller
 
         Cart::update($rowId, $data['qty']);
 
-        Session::flash('success', 'You have change the quantity of product' . $data['qty'] . '.');
+        Session::flash('success', 'You have change the quantity of product ' . $data['qty'] . '.');
 
         return response()->json(['success' => 'Cart Quantity Has Been Updated']);
     }

@@ -1,7 +1,9 @@
 @extends('layouts.app')
+
 @section('extra-meta')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
+
 @section('extra-script')
     <script src="https://js.stripe.com/v3/"></script>
 @endsection

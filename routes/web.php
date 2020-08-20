@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 /**Products Routes */
-Route::get('/boutique', 'ProductController@index')->name('products.index');
-Route::get('/boutique/{slug}', 'ProductController@show')->name('products.show');
+Route::get('/shop', 'ProductController@index')->name('products.index');
+Route::get('/shop/{slug}', 'ProductController@show')->name('products.show');
 
 /**Cart Routes (Shopping Cart) */
 Route::get('/panier', 'CartController@index')->name('cart.index');
