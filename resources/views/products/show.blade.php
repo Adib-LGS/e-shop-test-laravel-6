@@ -11,7 +11,7 @@
         </strong>
         <h5 class="mb-0">{{ $product->title }}</h5>
         <hr>
-        <p class="mb-auto text-muted">{{ $product->description }}</p>
+        <p class="mb-auto text-muted">{{ $product->description }}</p><!--Production Mode <p class="mb-auto text-muted">//!! $product->description !!</p>-->
         <strong class="mb-auto font-weight-normal text-secondary">{{ $product->getFormatedPrice() }}</strong>
         <form action="{{ route('cart.store') }}" method="POST">
           @csrf
@@ -20,7 +20,7 @@
         </form>
       </div>
       <div class="col-auto d-none d-lg-block">
-        <img src="{{ $product->image }}" alt="">
+        <img src="{{ $product->image }}" alt=""><!--Production Mode <img src=" //asset('storage/' . $product->image) " alt=""-->
       </div>
     </div>
   </div>

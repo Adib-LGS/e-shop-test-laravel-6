@@ -34,3 +34,7 @@ Route::get('/thanks', 'CheckoutController@thankYou')->name('checkout.thankYou');
 /*Route::get('/thanks', function () {
     return view('checkout.thx');
 });*/
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
