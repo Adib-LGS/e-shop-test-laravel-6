@@ -20,6 +20,7 @@ Route::get('/', function () {
 /**Products Routes */
 Route::get('/shop', 'ProductController@index')->name('products.index');
 Route::get('/shop/{slug}', 'ProductController@show')->name('products.show');
+Route::get('/search', 'ProductController@search')->name('products.search');
 
 /**Cart Routes (Shopping Cart) */
 Route::get('/panier', 'CartController@index')->name('cart.index');
