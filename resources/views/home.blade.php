@@ -14,7 +14,22 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach (Auth()->user()->orders as $order)
+                        <div class="card">
+                            <div class="card-header">
+                                Order passed the {{ Carbon\Carbon::parse
+                                ($order->payment_created_at)->format('d/m/Y H:i') }} amount of <strong> {{ getPrice($order->amount) }} </strong>
+                            </div>
+                            <div class="card-body">
+                                <h6>Orders List</h6>
+                                @foreach (unserialize($order->products) as $product)
+                                    <div>Product Name: {{ $product[0] }}</div>
+                                    <div>Price: {{ getPrice($product[1]) }}</div>
+                                    <div>Quantity: {{ $product[2] }}</div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
