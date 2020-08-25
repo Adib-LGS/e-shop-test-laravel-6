@@ -16,7 +16,7 @@
           <a href="{{ route('products.show', $product->slug) }}" class="stretched-link btn btn-info">Consulter le produit</a>
         </div>
         <div class="col-auto d-none d-lg-block">
-          <img src="{{ $product->image }}" alt=""> <!--Production Mode <img src=" //asset('storage/' . $product->image) " alt=""-->
+          <img src="{{ asset('storage/' . $product->image) }}" width="250" height="250"> <!--Production Mode <img src=" //asset('storage/' . $product->image) " alt=""--> <!--Dev Mode <img src=" $product->image" alt=""> -->
         </div>
       </div>
     </div>
