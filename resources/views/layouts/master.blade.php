@@ -7,7 +7,7 @@
     <meta name="author" content="Ludovic Guénet">
     @yield('extra-meta')
 
-    <title>Laravel 6 E-Commerce</title>
+    <title>H&H shop</title>
      <!-- Scripts -->
      <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -35,7 +35,7 @@
           <a class="text-muted" href="{{ route('cart.index') }}">Panier <span class="badge badge-pill badge-info text-white">{{ Cart::count() }}</span></a>
         </div>
         <div class="col-4 text-center">
-          <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">🛍️ E-Commerce</a>
+          <a class="blog-header-logo text-dark" href="{{ route('products.index') }}">🛍️ Hookah & HighTech</a>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
           @include('partials.search')

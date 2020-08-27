@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use App\Order;
+use App\Product;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Arr;
@@ -58,6 +59,11 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        if($this->chechIfNotAvailable()){
+            Session::flash('error', 'this Product is no more availble');
+            return response()->json(['success' => false], 400);
+        }
+
         $data = $request->json()->all();
 
         $order = new Order();
@@ -89,6 +95,7 @@ class CheckoutController extends Controller
         $order->save();
 
         if ($data['paymentIntent']['status'] === 'succeeded') {
+            $this->updateStock();
             Cart::destroy();
             Session::flash('succes', 'Your order has been succesfully traited.');
             return response()->json(['success' => 'Payment Intent Succeded']);
@@ -145,5 +152,26 @@ class CheckoutController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function chechIfNotAvailable()
+    {
+        foreach (Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+
+            if($product->stock < $item->qty){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function updateStock()
+    {
+        foreach(Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+            $product->update(['stock' => $product->stock - $item->qty]);
+        }
     }
 }

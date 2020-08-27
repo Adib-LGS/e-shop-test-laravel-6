@@ -86,8 +86,6 @@
                     var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                     var form = document.getElementById('payment-form');
                     var url = form.action;
-                    var redirect = '/thanks';
-
                     fetch(
                         url,
                         {
@@ -102,6 +100,11 @@
                                 paymentIntent: paymentIntent,
                             })
                         }).then((data) => {
+                            if(data.status === 400) {
+                                var redirect = '/shop';
+                            }else{
+                                var redirect = '/thanks';
+                            }
                         console.log(data);
                         window.location.href = redirect;
                     }).catch((error) => {

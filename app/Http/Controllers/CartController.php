@@ -95,8 +95,12 @@ class CartController extends Controller
 
         if($validate->fails()) {
             Session::flash('error', 'Quantity must be between 1 and 5');
-
             return response()->json(['error' => 'Cart Quantity Hasn\'t Been Updated']);
+        }
+
+        if($data['qty'] > $data['stock']){
+            Session::flash('error', 'This Quantity is not avalaible in stock');
+            return response()->json(['error' => 'Product Quantity not available']);
         }
 
         Cart::update($rowId, $data['qty']);

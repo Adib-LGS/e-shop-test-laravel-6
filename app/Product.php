@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $fillable = ['stock'];
+    
     public function getFormatedPrice()
     {
         //Division by 100 because format 'centime'

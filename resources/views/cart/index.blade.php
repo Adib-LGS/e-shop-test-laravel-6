@@ -43,7 +43,7 @@
                                     </th>
                                     <td class="border-0 align-middle"><strong>{{ getPrice($product->subtotal()) }}</strong></td>
                                     <td class="border-0 align-middle">
-                                        <select class="custom-select" name="qty" id="qty" data-id="{{ $product->rowId }}">
+                                    <select class="custom-select" name="qty" id="qty" data-id="{{ $product->rowId }}" data-stock="{{ $product->model->stock }}">
                                             @for ($i = 1; $i <= 5; $i++)
                                                 <option value="{{ $i }}" {{ $product->qty == $i ? 'selected' : ''}}>
                                                     {{ $i }}
@@ -119,8 +119,9 @@
     var qty = document.querySelectorAll('#qty');
     Array.from(qty).forEach((element) => {
         element.addEventListener('change', function () {
-            var rowId = element.getAttribute('data-id');
-            var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            let rowId = element.getAttribute('data-id');
+            let stock = element.getAttribute('data-stock');
+            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             fetch(`/panier/${rowId}`,
                 {
                     headers: {
@@ -131,7 +132,8 @@
                     },
                     method: 'put',
                     body: JSON.stringify({
-                        qty: this.value
+                        qty: this.value,
+                        stock : stock
                     })
             }).then((data) => {
                 console.log(data);
