@@ -1,3 +1,11 @@
+## This project is a beta for on of my clients. This is not a final version 
+
+## You can instal the same configuration 
+For that you have to fork the project, Open an DB MYSQL and use some libraries like "hardevine/LaravelShoppingcart" + Voyager Admin Package
+
+## Using Stripe API to make the payment
+I use a convertion money with GetFormatedPrice() function all prices are stocked in DB on Cents and then format in US$
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
