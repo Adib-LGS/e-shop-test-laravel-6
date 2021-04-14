@@ -1,4 +1,4 @@
-## This project is a beta for on of my clients. This is not a final version 
+## This is a beta for one of my clients. This is not a final version 
 
 ## You can instal the same configuration 
 For that you have to fork the project, Open an DB MYSQL and use some libraries like "hardevine/LaravelShoppingcart" + Voyager Admin Package
